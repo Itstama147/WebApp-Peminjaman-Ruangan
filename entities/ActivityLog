@@ -1,0 +1,36 @@
+{
+  "name": "ActivityLog",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": [
+        "reservation_created",
+        "reservation_approved",
+        "reservation_rejected",
+        "room_status_changed"
+      ],
+      "description": "Type of activity"
+    },
+    "reservation_id": {
+      "type": "string",
+      "description": "Related reservation ID"
+    },
+    "room_id": {
+      "type": "string",
+      "description": "Related room ID"
+    },
+    "details": {
+      "type": "string",
+      "description": "Activity details"
+    },
+    "actor_name": {
+      "type": "string",
+      "description": "Person who performed the action"
+    }
+  },
+  "required": [
+    "action",
+    "details"
+  ]
+}

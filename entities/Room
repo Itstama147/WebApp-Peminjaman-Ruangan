@@ -1,0 +1,55 @@
+{
+  "name": "Room",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Room name or number"
+    },
+    "building": {
+      "type": "string",
+      "description": "Building location"
+    },
+    "capacity": {
+      "type": "number",
+      "description": "Maximum capacity"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "classroom",
+        "lab",
+        "meeting_room",
+        "auditorium",
+        "sports_hall",
+        "library"
+      ],
+      "description": "Type of room"
+    },
+    "facilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available facilities (projector, whiteboard, etc.)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "available",
+        "in_use",
+        "unavailable"
+      ],
+      "default": "available",
+      "description": "Current room status"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Room image URL"
+    }
+  },
+  "required": [
+    "name",
+    "status"
+  ]
+}

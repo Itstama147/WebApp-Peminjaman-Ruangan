@@ -1,0 +1,65 @@
+{
+  "name": "Reservation",
+  "type": "object",
+  "properties": {
+    "reservation_id": {
+      "type": "string",
+      "description": "Unique reservation ID"
+    },
+    "borrower_name": {
+      "type": "string",
+      "description": "Name of the person making reservation"
+    },
+    "class_unit": {
+      "type": "string",
+      "description": "Class or department unit"
+    },
+    "room_id": {
+      "type": "string",
+      "description": "Reference to the room"
+    },
+    "room_name": {
+      "type": "string",
+      "description": "Room name for display"
+    },
+    "reservation_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of reservation"
+    },
+    "start_time": {
+      "type": "string",
+      "description": "Start time (HH:MM)"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "End time (HH:MM)"
+    },
+    "purpose": {
+      "type": "string",
+      "description": "Purpose of room use"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending",
+      "description": "Reservation approval status"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Notes from admin"
+    }
+  },
+  "required": [
+    "borrower_name",
+    "room_id",
+    "reservation_date",
+    "start_time",
+    "end_time",
+    "purpose"
+  ]
+}
