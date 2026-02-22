@@ -107,7 +107,7 @@ export default function ReservationForm({ rooms, onSubmit, isSubmitting, existin
     if (conflictWarning || duplicateWarning) return;
     
     if (validateForm()) {
-      const selectedRoom = rooms.find(r => r.id === formData.room_id);
+      const selectedRoom = rooms.find(r => String (r.id) === formData.room_id);
       onSubmit({
         ...formData,
         room_name: selectedRoom?.name || ""
@@ -116,11 +116,14 @@ export default function ReservationForm({ rooms, onSubmit, isSubmitting, existin
   };
   
   const handleChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: null }));
-    }
-  };
+  // Ensure we are saving a string for the room_id
+  const finalValue = field === "room_id" ? String(value) : value;
+  setFormData(prev => ({ ...prev, [field]: finalValue }));
+  
+  if (errors[field]) {
+    setErrors(prev => ({ ...prev, [field]: null }));
+  }
+};
   
   const handleSelectAlternativeRoom = (room) => {
     handleChange("room_id", room.id);
@@ -185,7 +188,7 @@ export default function ReservationForm({ rooms, onSubmit, isSubmitting, existin
                   <SelectItem value="none" disabled>Tidak ada ruangan tersedia</SelectItem>
                 ) : (
                   availableRooms.map((room) => (
-                    <SelectItem key={room.id} value={room.id}>
+                    <SelectItem key={room.id} value={String (room.id)}>
                       {room.name} - {room.building || "Utama"} ({room.capacity || 30} kursi)
                     </SelectItem>
                   ))
